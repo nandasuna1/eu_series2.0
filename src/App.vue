@@ -3,10 +3,11 @@
     <section class="hero is-medium is-link">
       <div class="hero-body">
         <p class="title">
+          <img src="../public/logo1.jpg" alt="" class="image is-128x128 ">
           Cine em Casa
         </p>
         <p class="subtitle">
-          seus filmes e séries aqui!
+          Seus filmes e séries aqui!
         </p>
       </div>
     </section>
@@ -23,7 +24,6 @@
     </div>
     <Midia :year="this.midia.Year" :title="midia.Title" :imgUrl="midia.Poster" :plot="midia.Plot" :url="this.busca"/>
 
-    <p>{{midia.Title}}</p>
 
   </div>
   
@@ -42,7 +42,13 @@ export default {
     }
   },
   created: function(){
-
+    var key = "&apikey=b2f3b050";
+      axios.get("https://www.omdbapi.com/?t=avengers"+key).then(res => {
+      console.log('app aqui!');
+      this.midia = res.data;
+      console.log(this.midia)
+      return this.midia
+    })
     
   },
 
@@ -53,12 +59,16 @@ export default {
   methods:{
     buscar:function(){
       var key = "&apikey=b2f3b050";
-      axios.get("https://www.omdbapi.com/?t="+this.busca+key).then(res => {
+     axios.get("https://www.omdbapi.com/?t="+this.busca+key).then(res => {
       console.log('app aqui!');
-      this.midia = res.data;
-      console.log(this.midia)
-      return this.midia
-    })
+      if(res.data.Response != 'False'){
+        this.midia = res.data;
+        console.log(this.midia)
+        return this.midia
+      }else{
+        window.alert("Filme nao encontrado")
+      }
+    }) 
     }
   }
 }
@@ -71,10 +81,15 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 
 #busca{
   margin: 5% 20%;
+}
+
+.title img{
+  align-self: center;
+  margin-left: 43%;
+  margin-bottom: 2%;
 }
 </style>
