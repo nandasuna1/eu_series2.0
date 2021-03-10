@@ -5,26 +5,25 @@
 
         <div class="card-image ">
             <figure class="">
-            <img :src="imgUrl" alt="Placeholder image">
+            <img :src="imgUrl" :alt="title">
             </figure>
         </div>
 
         <div class="card-content">
             <div class="media">
-            <div class="media-left"></div>
+                <div class="media-left"></div>
 
-            <div class="media-content">
-                <p class="title is-4">{{title}}</p>
-                <p class="subtitle is-6">{{year}}</p>
+                <div class="media-content">
+                    <p class="title is-4">{{title}}</p>
+                    <p class="subtitle is-6">{{year}}</p>
+                </div>
             </div>
-
-            </div>
-
-            <div class="content">
-                {{plot}}
-            </div>
-            </div>
+            
+            <div class="content">{{plot}}</div>
         </div>
+            <button class="button is-primary">Detalhes</button>
+    </div>
+        
   </div>
 </template>
 
@@ -61,7 +60,18 @@ export default {
 </script>
 
 <style>
+.card{
+    height: 110%;
+}
+
+.card button{
+    margin-bottom: 2%;
+}
 .card-image{
     size: 50%;
+}
+
+.content{
+    margin: 1% 5%;
 }
 </style>

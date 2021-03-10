@@ -1,10 +1,9 @@
 <template>
   <div id="app">
-    <section class="hero is-medium is-link">
+    <section class="hero is-small is-link">
       <div class="hero-body">
         <p class="title">
-          <img src="../public/logo1.jpg" alt="" class="image is-128x128 ">
-          Cine em Casa
+          <span>Vue</span> Movies
         </p>
         <p class="subtitle">
           Seus filmes e séries aqui!
@@ -14,11 +13,11 @@
 
     <div class="field has-addons" id="busca">
       <div class="control is-expanded">
-        <input class="input" type="text" placeholder="Encontre seu filme ou serie preferido" v-model="busca">
+        <input class="input" type="text" placeholder="O que procura?" v-model="busca">
       </div>
       <div class="control" @click="buscar">
-        <a class="button is-info">
-          Search
+        <a class="button is-info ">
+          Buscar
         </a>
       </div>
     </div>
@@ -87,9 +86,8 @@ export default {
   margin: 5% 20%;
 }
 
-.title img{
-  align-self: center;
-  margin-left: 43%;
-  margin-bottom: 2%;
+.title span{
+  color: rgb(58, 248, 0);
 }
+
 </style>
