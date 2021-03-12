@@ -35,7 +35,6 @@
 <script>
 import axios from "axios";
 
-
 export default {
 
     //o created é carregado no inicio do carregamento da pagina
@@ -74,7 +73,7 @@ export default {
             }else{
                 this.mostrar = true
             }
-            var key = config.api_key;
+            var key = process.env.VUE_APP_API_KEY;
             axios.get("https://www.omdbapi.com/?i="+this.imdbID+key).then(res => {
                 this.plot = res.data.Plot;
                 this.nota = res.data.Ratings[0].Value;
@@ -87,7 +86,6 @@ export default {
 }
 </script>
 
-<script type='text/javascript' src='config.js'></script>
 
 <style>
 .card{

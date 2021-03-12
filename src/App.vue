@@ -29,8 +29,8 @@
   </div>
   
 </template>
-<script type='text/javascript' src='config.js'></script>
-<script>
+
+<script >
 import axios from 'axios';
 import Midia from './components/Midia.vue'
 export default {
@@ -44,7 +44,7 @@ export default {
     }
   },
   created: function(){
-    var key = config.api_key;
+    var key = process.env.VUE_APP_API_KEY;
       axios.get("https://www.omdbapi.com/?s=avengers"+key).then(res => {
       console.log('app aqui!');
       this.midia = res.data.Search;
@@ -60,7 +60,7 @@ export default {
 
   methods:{
     buscar:function(){
-      var key = config.api_key;
+      var key = process.env.VUE_APP_API_KEY;
       axios.get("https://www.omdbapi.com/?s="+this.busca+key).then(res => {
       console.log('app aqui!');
       if(res.data.Response != 'False'){
