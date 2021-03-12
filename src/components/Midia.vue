@@ -19,21 +19,21 @@
                     <button class="button is-primary" @click="mostrarDet">Detalhes</button>
                 </div>
             </div>
+            <div id="detalhes" v-show="mostrar">
+                <div class="content" ><b>Plot:</b> {{plot}}</div>
+                <div class="content" ><b>Atores:</b> {{atores}}</div>
+                <div class="content" ><b>Nota:</b> {{nota}}</div>
+            </div>
             
-            <div class="content" v-show="!mostrar">{{plot}}</div>
-        </div>
+        </div>       
 
-       
-        <div id="detalhes" v-show="mostrar">
-            <h1>MOSTRANDO</h1>
-        </div>
     </div>
         
   </div>
 </template>
 
 <script>
-//import axios from "axios";
+import axios from "axios";
 
 
 export default {
@@ -47,9 +47,11 @@ export default {
                 img: '',
                 plot:'',
                 url:'',
-                longPlot:'',
-
+                imdbID:'',
+                
             },
+            nota: '',
+            atores:'',
             mostrar: false,
         }
     },
@@ -59,7 +61,8 @@ export default {
         imgUrl: String,
         plot: String,
         url: String,
-        longPlot: String,
+        imdbID: String,
+        
 
     },
     computed:{
@@ -68,10 +71,16 @@ export default {
     methods:{
         mostrarDet: function(){
             if(this.mostrar == true){
-                this.mostrar = false;
+                this.mostrar = false
             }else{
-                this.mostrar = true;
+                this.mostrar = true
             }
+            var key = "&apikey=b2f3b050";
+            axios.get("https://www.omdbapi.com/?i="+this.imdbID+key).then(res => {
+                this.plot = res.data.Plot;
+                this.nota = res.data.Ratings[0].Value;
+                this.atores = res.data.Actors;
+            })
 
         }
     }
