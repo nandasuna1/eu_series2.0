@@ -21,7 +21,9 @@
         </a>
       </div>
     </div>
-    <Midia :year="this.midia.Year" :title="midia.Title" :imgUrl="midia.Poster" :plot="midia.Plot" :url="this.busca"/>
+    <div v-for="midi in midia" :key="midi.url">
+      <Midia :year="midi.Year" :title="midi.Title" :imgUrl="midi.Poster" :plot="midi.Plot" />
+    </div>
 
 
   </div>
@@ -38,13 +40,14 @@ export default {
     return{
       busca:'',
       midia: [],
+      midias:[]
     }
   },
   created: function(){
     var key = "&apikey=b2f3b050";
-      axios.get("https://www.omdbapi.com/?t=avengers"+key).then(res => {
+      axios.get("https://www.omdbapi.com/?s=avengers"+key).then(res => {
       console.log('app aqui!');
-      this.midia = res.data;
+      this.midia = res.data.Search;
       console.log(this.midia)
       return this.midia
     })
@@ -58,10 +61,10 @@ export default {
   methods:{
     buscar:function(){
       var key = "&apikey=b2f3b050";
-     axios.get("https://www.omdbapi.com/?t="+this.busca+key).then(res => {
+      axios.get("https://www.omdbapi.com/?s="+this.busca+key).then(res => {
       console.log('app aqui!');
       if(res.data.Response != 'False'){
-        this.midia = res.data;
+        this.midia = res.data.Search;
         console.log(this.midia)
         return this.midia
       }else{

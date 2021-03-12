@@ -16,12 +16,17 @@
                 <div class="media-content">
                     <p class="title is-4">{{title}}</p>
                     <p class="subtitle is-6">{{year}}</p>
+                    <button class="button is-primary" @click="mostrarDet">Detalhes</button>
                 </div>
             </div>
             
-            <div class="content">{{plot}}</div>
+            <div class="content" v-show="!mostrar">{{plot}}</div>
         </div>
-            <button class="button is-primary">Detalhes</button>
+
+       
+        <div id="detalhes" v-show="mostrar">
+            <h1>MOSTRANDO</h1>
+        </div>
     </div>
         
   </div>
@@ -42,7 +47,10 @@ export default {
                 img: '',
                 plot:'',
                 url:'',
+                longPlot:'',
+
             },
+            mostrar: false,
         }
     },
     props:{
@@ -51,10 +59,22 @@ export default {
         imgUrl: String,
         plot: String,
         url: String,
+        longPlot: String,
+
     },
     computed:{
 
     },
+    methods:{
+        mostrarDet: function(){
+            if(this.mostrar == true){
+                this.mostrar = false;
+            }else{
+                this.mostrar = true;
+            }
+
+        }
+    }
 
 }
 </script>
@@ -64,9 +84,6 @@ export default {
     height: 110%;
 }
 
-.card button{
-    margin-bottom: 2%;
-}
 .card-image{
     size: 50%;
 }
