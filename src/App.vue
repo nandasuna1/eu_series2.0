@@ -22,7 +22,7 @@
       </div>
     </div>
     <div v-for="midi in midia" :key="midi.url">
-      <Midia :year="midi.Year" :title="midi.Title" :imgUrl="midi.Poster" :plot="midi.Plot" :imdbID="midi.imdbID" />
+      <Midia :year="midi.Year" :title="midi.Title" :imgUrl="midi.Poster" :imdbID="midi.imdbID" />
     </div>
 
 

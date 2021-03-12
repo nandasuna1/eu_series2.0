@@ -45,11 +45,11 @@ export default {
                 titulo: '',
                 ano: "" ,
                 img: '',
-                plot:'',
                 url:'',
                 imdbID:'',
                 
             },
+            plot:'',
             nota: '',
             atores:'',
             mostrar: false,
@@ -59,7 +59,6 @@ export default {
         year: String,
         title: String,
         imgUrl: String,
-        plot: String,
         url: String,
         imdbID: String,
         
