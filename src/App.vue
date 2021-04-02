@@ -44,7 +44,7 @@ export default {
     }
   },
   created: function(){
-    var key = "&apikey=b2f3b050";
+    var key = process.env.VUE_APP_API_KEY;
       axios.get("https://www.omdbapi.com/?s=avengers"+key).then(res => {
       console.log('app aqui!');
       this.midia = res.data.Search;
@@ -60,7 +60,7 @@ export default {
 
   methods:{
     buscar:function(){
-      var key = "&apikey=b2f3b050";
+      var key = process.env.VUE_APP_API_KEY;
       axios.get("https://www.omdbapi.com/?s="+this.busca+key).then(res => {
       console.log('app aqui!');
       if(res.data.Response != 'False'){

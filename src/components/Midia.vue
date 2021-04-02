@@ -73,7 +73,7 @@ export default {
             }else{
                 this.mostrar = true
             }
-            var key = "&apikey=b2f3b050";
+            var key = process.env.VUE_APP_API_KEY;
             axios.get("https://www.omdbapi.com/?i="+this.imdbID+key).then(res => {
                 this.plot = res.data.Plot;
                 this.nota = res.data.Ratings[0].Value;
