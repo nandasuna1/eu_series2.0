@@ -16,14 +16,13 @@
                 <div class="media-content">
                     <p class="title is-4">{{title}}</p>
                     <p class="subtitle is-6">{{year}}</p>
-                    <button class="button is-primary" @click="mostrarDet">Detalhes</button>
+
+                    <router-link :to="{name:'Midia1', params:{rota: imdbID}}">
+                        <button class="button is-primary" >Detalhes</button>
+                    </router-link>
                 </div>
             </div>
-            <div id="detalhes" v-show="mostrar">
-                <div class="content" ><b>Plot:</b> {{plot}}</div>
-                <div class="content" ><b>Atores:</b> {{atores}}</div>
-                <div class="content" ><b>Nota:</b> {{nota}}</div>
-            </div>
+
             
         </div>       
 
@@ -33,7 +32,7 @@
 </template>
 
 <script>
-import axios from "axios";
+//import axios from "axios";
 
 export default {
 
@@ -48,40 +47,27 @@ export default {
                 imdbID:'',
                 
             },
-            plot:'',
+            enredo:'',
             nota: '',
             atores:'',
             mostrar: false,
+
         }
     },
-    props:{
+    props:
+    {
         year: String,
         title: String,
         imgUrl: String,
         url: String,
         imdbID: String,
-        
-
+        tipo: String,
+        plot: String,
     },
     computed:{
-
+        
     },
-    methods:{
-        mostrarDet: function(){
-            if(this.mostrar == true){
-                this.mostrar = false
-            }else{
-                this.mostrar = true
-            }
-            var key = process.env.VUE_APP_API_KEY;
-            axios.get("https://www.omdbapi.com/?i="+this.imdbID+key).then(res => {
-                this.plot = res.data.Plot;
-                this.nota = res.data.Ratings[0].Value;
-                this.atores = res.data.Actors;
-            })
 
-        }
-    }
 
 }
 </script>
